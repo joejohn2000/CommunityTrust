@@ -41,7 +41,7 @@
           name: document.getElementById('fullname').value,
           email: document.getElementById('email').value,
           phone: document.getElementById('phone').value,
-          message: document.getElementById('message').value
+          freetime: document.getElementById('freetime').value
         }).then(() => {
           alert('Your form is submitted');
           document.getElementById('frmContact').reset();
@@ -68,8 +68,8 @@
         <label for="phone" class="form-label">Phone no:</label>
         <input type="number" class="form-control" id="phone" name="phone">
 
-        <label for="message" class="form-label">Time Slot:</label>
-        <textarea class="form-control" id="message" name="message"></textarea>
+        <label for="freetimes" class="form-label">Time Slot:</label>
+        <textarea class="form-control" id="freetime" name="freetime"></textarea>
       </div>
       <div class="text-center mb-3">
         <button type="submit" class="btn btn-primary" name="submit">Submit</button>
