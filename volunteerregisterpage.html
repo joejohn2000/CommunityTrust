@@ -10,6 +10,31 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
   <title>Volunteer Registration</title>
+  
+</head>
+
+<body>
+  <div class="container">
+    <form method="post" id="frmContact">
+      <div class="mb-3">
+        <label for="fullname" class="form-label">Fullname:</label>
+        <input type="text" class="form-control" id="fullname" name="fullname" required>
+
+        <label for="email" class="form-label">Email:</label>
+        <input type="email" class="form-control" id="email" name="email" required>
+
+        <label for="phone" class="form-label">Phone no:</label>
+        <input type="number" class="form-control" id="phone" name="phone">
+
+        <label for="message" class="form-label">Time Slot:</label>
+        <textarea class="form-control" id="message" name="message"></textarea>
+      </div>
+      <div class="text-center mb-3">
+        <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+
   <script type="module">
     // Import the functions you need from the SDKs you need
 
@@ -53,29 +78,6 @@
     });
 
   </script>
-</head>
-
-<body>
-  <div class="container">
-    <form method="post" id="frmContact">
-      <div class="mb-3">
-        <label for="fullname" class="form-label">Fullname:</label>
-        <input type="text" class="form-control" id="fullname" name="fullname" required>
-
-        <label for="email" class="form-label">Email:</label>
-        <input type="email" class="form-control" id="email" name="email" required>
-
-        <label for="phone" class="form-label">Phone no:</label>
-        <input type="number" class="form-control" id="phone" name="phone">
-
-        <label for="message" class="form-label">Time Slot:</label>
-        <textarea class="form-control" id="message" name="message"></textarea>
-      </div>
-      <div class="text-center mb-3">
-        <button type="submit" class="btn btn-primary" name="submit">Submit</button>
-      </div>
-    </form>
-  </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
