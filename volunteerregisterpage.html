@@ -1,51 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<meta name="Description" content="Enter your description here"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<link rel="stylesheet" href="assets/css/style.css">
-<title>Volunteer Registration</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="Description" content="Enter your description here" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <title>Volunteer Registration</title>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+    import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCSoKFFsWhrcAiwa1QvzJlY6VgmHaZqhXw",
+      authDomain: "communitycraft-54cbc.firebaseapp.com",
+      databaseURL: "https://communitycraft-54cbc-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "communitycraft-54cbc",
+      storageBucket: "communitycraft-54cbc.appspot.com",
+      messagingSenderId: "451424491115",
+      appId: "1:451424491115:web:86670dca37658be31e832e",
+      measurementId: "G-7XWJ5M4W2L"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    // Get a reference to the database service
+    const db = getDatabase(app);
+
+    document.addEventListener('DOMContentLoaded', function () {
+      document.getElementById('frmContact').addEventListener('submit', function (e) {
+        e.preventDefault();
+        set(ref(db, 'users/' + Math.random().toString(36).slice(2, 7)), {
+          name: document.getElementById('fullname').value,
+          email: document.getElementById('email').value,
+          phone: document.getElementById('phone').value,
+          message: document.getElementById('message').value
+        }).then(() => {
+          alert('Your form is submitted');
+          document.getElementById('frmContact').reset();
+        }).catch((error) => {
+          console.error("Error submitting form:", error);
+        });
+      });
+
+    });
+
+  </script>
 </head>
+
 <body>
-
-  <div class="container mt-5">
-    <h1 class="text-center mb-4">Volunteer Registration</h1>
-    <form id="volunteerForm">
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" class="form-control" id="name" required>
+  <div class="container">
+    <form method="post" id="frmContact">
+      <div class="mb-3">
+        <label for="fullname" class="form-label">Fullname:</label>
+        <input type="text" class="form-control" id="fullname" name="fullname" required>
       </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" class="form-control" id="email" required>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email:</label>
+        <input type="email" class="form-control" id="email" name="email" required>
       </div>
-      <div class="form-group">
-        <label for="phone">Phone Number</label>
-        <input type="tel" class="form-control" id="phone" required>
+      <div class="mb-3">
+        <label for="phone" class="form-label">Phone no:</label>
+        <input type="number" class="form-control" id="phone" name="phone">
       </div>
-      <div class="form-group">
-        <label for="timeSlot">Free Time Slot</label>
-        <select class="form-control" id="timeSlot" required>
-          <option value="">Select Time Slot</option>
-          <option value="Morning">Morning</option>
-          <option value="Afternoon">Afternoon</option>
-          <option value="Evening">Evening</option>
-        </select>
+      <div class="mb-3">
+        <label for="message" class="form-label">Time Slot:</label>
+        <textarea class="form-control" id="message" name="message"></textarea>
       </div>
-      <br><br>
-      <div class="d-grid gap-2 col-6 mx-auto">
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
+      <button type="submit" class="btn btn-primary" name="submit">Submit</button>
     </form>
-</div>
+  </div>
 
-<script src="config.js"></script>
-<script src="submitbutton.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
 </body>
+
 </html>
