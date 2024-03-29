@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Admin Login</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Admin Login</h1>
+        <form id="loginForm">
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
+
+    <!-- Firebase JavaScript SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
+
+        // Initialize Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyCSoKFFsWhrcAiwa1QvzJlY6VgmHaZqhXw",
+            authDomain: "communitycraft-54cbc.firebaseapp.com",
+            databaseURL: "https://communitycraft-54cbc-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "communitycraft-54cbc",
+            storageBucket: "communitycraft-54cbc.appspot.com",
+            messagingSenderId: "451424491115",
+            appId: "1:451424491115:web:86670dca37658be31e832e",
+            measurementId: "G-7XWJ5M4W2L"
+        };
+
+        const app = initializeApp(firebaseConfig);
+
+        // Get the Auth service for the default app
+        const auth = getAuth();
+
+        // Login form submission
+        const loginForm = document.getElementById('loginForm');
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                // Logged in successfully
+                console.log('Logged in:', userCredential.user);
+                window.location.href = 'admin.html'; // Redirect to admin page
+            } catch (error) {
+                // Handle login errors
+                console.error('Login error:', error);
+                alert('Login failed. Please check your email and password.');
+            }
+        });
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>
