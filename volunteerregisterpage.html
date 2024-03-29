@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
   <title>Volunteer Registration</title>
-  
+
 </head>
 
 <body>
@@ -26,8 +26,8 @@
         <label for="phone" class="form-label">Phone no:</label>
         <input type="number" class="form-control" id="phone" name="phone">
 
-        <label for="message" class="form-label">Time Slot:</label>
-        <textarea class="form-control" id="message" name="message"></textarea>
+        <label for="timeslot" class="form-label">Time Slot:</label>
+        <textarea class="form-control" id="timeslot" name="timeslot"></textarea>
       </div>
       <div class="text-center mb-3">
         <button type="submit" class="btn btn-primary" name="submit">Submit</button>
@@ -66,8 +66,7 @@
           name: document.getElementById('fullname').value,
           email: document.getElementById('email').value,
           phone: document.getElementById('phone').value,
-          freetime: document.getElementById('freetime').value
-          message: document.getElementById('message').value
+          timeslot: document.getElementById('timeslot').value
         }).then(() => {
           alert('Your form is submitted');
           document.getElementById('frmContact').reset();
