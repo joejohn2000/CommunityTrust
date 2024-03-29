@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <title>Admin Page</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
 
 </head>
 
@@ -17,7 +18,7 @@
     <div class="container">
         <h1 class="mt-5 mb-4">Volunteer Data</h1>
         <div id="volunteerData" class="table-responsive">
-            <table class="table table-bordered">
+            <table id="volunteerTable" class="table table-bordered">
                 <thead class="thead-dark">
                     <tr>
                         <th>Fullname</th>
@@ -31,11 +32,12 @@
 
                 </tbody>
             </table>
+            <button onclick="exportToExcel('volunteerTable', 'volunteer_details')">Export to Excel</button>
         </div>
 
         <h1 class="mt-5 mb-4">Ngo Data</h1>
         <div id="ngoData" class="table-responsive">
-            <table class="table table-bordered">
+            <table id="ngoTable" class="table table-bordered">
                 <thead class="thead-dark">
                     <tr>
                         <th>Fullname</th>
@@ -45,10 +47,10 @@
                     </tr>
                 </thead>
                 <tbody>
-
-
+                    <!-- Table body content goes here -->
                 </tbody>
             </table>
+            <button onclick="exportToExcel('ngoTable', 'ngo_details')">Export to Excel</button>
         </div>
 
     </div>
@@ -125,6 +127,14 @@
             displayNgoData(snapshot);
         });
 
+    </script>
+
+    <script>
+        function exportToExcel(tableId, filename) {
+            const table = document.getElementById(tableId);
+            const wb = XLSX.utils.table_to_book(table, { sheet: filename });
+            XLSX.writeFile(wb, `${filename}.xlsx`);
+        }
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
