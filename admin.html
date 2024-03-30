@@ -53,6 +53,29 @@
             <button onclick="exportToExcel('ngoTable', 'ngo_details')">Export to Excel</button>
         </div>
 
+        <h1 class="mt-5 mb-4">Contacts Data</h1>
+        <div id="ContactsData" class="table-responsive">
+            <table id="contactsTable" class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Feedback1</th>
+                        <th>Feedback2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Table body content goes here -->
+                </tbody>
+            </table>
+            <button onclick="exportToExcel('contactsTable', 'contacts_details')">Export to Excel</button>
+        </div>
+        
+
+
+
+
+
     </div>
 
     <script type="module">
@@ -78,6 +101,7 @@
         const db = getDatabase(app);
         const volunteerDataRef = ref(db, 'Volunteer');
         const ngoDataRef = ref(db, 'Ngo');
+        const ContactsDataRef = ref(db, 'contacts');
 
         // Function to display volunteer data
         function displayVolunteerData(data) {
@@ -117,6 +141,27 @@
             }
         }
 
+// Function to display contacts data
+function displayContactsData(data) {
+    const contactsData = data.val();
+    const tableBody = document.querySelector('#contactsData tbody');
+    tableBody.innerHTML = '';
+
+    for (const [key, value] of Object.entries(contactsData)) {
+        const row = `
+            <tr>
+                <td>${value.name}</td>
+                <td>${value.email}</td>
+                <td>${value.feedback1}</td>
+                <td>${value.feedback2}</td>
+            </tr>
+        `;
+        tableBody.innerHTML += row;
+    }
+}
+
+
+
         // Retrieve volunteer data and display it
         onValue(volunteerDataRef, (snapshot) => {
             displayVolunteerData(snapshot);
@@ -126,6 +171,14 @@
         onValue(ngoDataRef, (snapshot) => {
             displayNgoData(snapshot);
         });
+
+// Retrieve contacts data and display it
+onValue(ContactsDataRef, (snapshot) => {
+    console.log("Snapshot:", snapshot.val()); // Check the snapshot value
+    displayContactsData(snapshot);
+});
+
+
 
     </script>
 
