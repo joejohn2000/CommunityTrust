@@ -154,40 +154,40 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="feedback2" id="feedback2-strongly-disagree" value="Strongly Disagree">
-                                    <label class="form-check-label" for="feedback2-strongly-disagree">
+                                    <input class="form-check-input" type="radio" name="feedback3" id="feedback3-strongly-disagree" value="Strongly Disagree">
+                                    <label class="form-check-label" for="feedback3-strongly-disagree">
                                         Strongly Disagree
                                     </label>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="feedback2" id="feedback2-disagree" value="Disagree">
-                                    <label class="form-check-label" for="feedback2-disagree">
+                                    <input class="form-check-input" type="radio" name="feedback3" id="feedback3-disagree" value="Disagree">
+                                    <label class="form-check-label" for="feedback3-disagree">
                                         Disagree
                                     </label>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="feedback2" id="feedback2-neutral" value="Neutral">
-                                    <label class="form-check-label" for="feedback2-neutral">
+                                    <input class="form-check-input" type="radio" name="feedback3" id="feedback3-neutral" value="Neutral">
+                                    <label class="form-check-label" for="feedback3-neutral">
                                         Neutral
                                     </label>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="feedback2" id="feedback2-agree" value="Agree">
-                                    <label class="form-check-label" for="feedback2-agree">
+                                    <input class="form-check-input" type="radio" name="feedback3" id="feedback3-agree" value="Agree">
+                                    <label class="form-check-label" for="feedback3-agree">
                                         Agree
                                     </label>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="feedback2" id="feedback2-strongly-agree" value="Strongly Agree">
-                                    <label class="form-check-label" for="feedback2-strongly-agree">
+                                    <input class="form-check-input" type="radio" name="feedback3" id="feedback3-strongly-agree" value="Strongly Agree">
+                                    <label class="form-check-label" for="feedback3-strongly-agree">
                                         Strongly Agree
                                     </label>
                                 </div>
@@ -251,14 +251,15 @@
             const message = document.getElementById('message').value;
             const feedback1 = document.querySelector('input[name="feedback1"]:checked').value;
             const feedback2 = document.querySelector('input[name="feedback2"]:checked').value;
-
+            const feedback3 = document.querySelector('input[name="feedback3"]:checked').value;
             // Store the data in Firebase
             push(ref(database, 'contacts'), {
                 name: name,
                 email: email,
                 message: message,
                 feedback1: feedback1,
-                feedback2: feedback2
+                feedback2: feedback2,
+                feedback3: feedback3
             }).then(() => {
                 // Clear the form after successful submission
                 document.getElementById('name').value = '';
@@ -266,7 +267,7 @@
                 document.getElementById('message').value = '';
                 document.querySelector('input[name="feedback1"]:checked').checked = false;
                 document.querySelector('input[name="feedback2"]:checked').checked = false;
-
+                document.querySelector('input[name="feedback3"]:checked').checked = false;
                 // Optionally, display a success message to the user
                 alert('Form submitted successfully!');
             }).catch(error => {
