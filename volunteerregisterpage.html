@@ -100,7 +100,7 @@
           timeslot: document.getElementById('timeslot').value,
           interest: document.getElementById('interest').value
         }).then(() => {
-          alert('Your form is submitted');
+          window.location.href = 'Welcomepagevolunteer.html';
           document.getElementById('frmContact').reset();
         }).catch((error) => {
           console.error("Error submitting form:", error);

@@ -93,7 +93,7 @@
           type: document.getElementById('type').value,
           
         }).then(() => {
-          alert('Your form is submitted');
+          window.location.href = 'Welcomepagengo.html';
           document.getElementById('frmContact').reset();
         }).catch((error) => {
           console.error("Error submitting form:", error);
