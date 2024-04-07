@@ -108,12 +108,29 @@
         </div>
     </div> -->
 
+            <figure class="text-center">
+            <p class="display-7 fw-bold">VOLUNTEERS</p>
+        </figure>
+
         <div id="scrollContainer" class="card-container">
-            <div class="card-wrapper">
+            <div class="card-wrapper" id="peps">
             </div>
         </div>
-        <button onclick="scrolltoleft()" class="scroll-button right">&laquo;</button>
-        <button onclick="scrollRight()" class="scroll-button left">&raquo;</button>
+        <button onclick="scrolltoleft(1)" class="scroll-button right">&laquo;</button>
+        <button onclick="scrollRight(1)" class="scroll-button left">&raquo;</button>
+
+        <figure class="text-center">
+            <p class="display-7 fw-bold">NGO's</p>
+        </figure>
+        <div id="scrollContainerforNgo" class="card-container">
+            <div class="card-wrapper" id="ngo">
+            </div>
+        </div>
+        <button onclick="scrolltoleft(2)" class="scroll-button right">&laquo;</button>
+        <button onclick="scrollRight(2)" class="scroll-button left">&raquo;</button>
+
+
+
 
         <!-- Footer -->
         <footer class="footer mt-auto py-3 bg-light">
@@ -130,12 +147,19 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
         <script>
 
-            const cardWrapper = document.querySelector('.card-wrapper');
+
             const leftButton = document.getElementById('left');
             const rightButton = document.querySelector('.scroll-button.right');
 
-            function generateCards(data) {
-                console.log(data);
+            function generateCards(data, n) {
+                console.log(n);
+                let cardWrapper;
+                if (n == 1) {
+                    cardWrapper = document.getElementById('peps');
+                } else {
+                    cardWrapper = document.getElementById('ngo');
+                }
+                //   console.log(data);
                 data.forEach(element => {
 
                     const card = document.createElement('div');
@@ -143,14 +167,25 @@
 
                     // Add your image and data dynamically here
                     const cardImage = document.createElement('img');
+                    if(n==1)
                     cardImage.src = `${element[2]}`; // Example image source
+                   else
+                   cardImage.src = `${element[4]}`;
 
                     const cardData = document.createElement('p');
-                   // cardData.style.whiteSpace = 'pre-wrap';
-                    cardData.innerHTML = `<center><b>${element[0]}</center> 
+                    // cardData.style.whiteSpace = 'pre-wrap';
+                    if (n == 1) {
+                        cardData.innerHTML = `<center><b>${element[0]}</center> 
                                           <center>${element[1]}</center>
                                           <center>${element[3]}</center>
                                           <center>${element[4]}</center> `;
+
+                    } else {
+                        cardData.innerHTML = `<center><b>${element[0]}</center> 
+                                          <center>${element[1]}</center>
+                                          <center><a href="${element[2]}">VISIT</a></center>
+                                          <center>${element[3]}</center> `;
+                    }
 
                     card.appendChild(cardImage);
                     card.appendChild(cardData);
@@ -160,7 +195,7 @@
 
             }
 
-             //dummy data
+            //dummy data for people
 
             var data1 = ["John Doe", "NGO Volunteer", "https://picsum.photos/id/100/200", "Reading", "8am-3pm"];
             var data2 = ["Jane Smith", "Community Organizer", "https://picsum.photos/id/200/200", "Gardening", "10am-2pm"];
@@ -176,18 +211,42 @@
             // Combine all data arrays into a single array
             var dataArray = [data1, data2, data3, data4, data5, data6, data7, data8, data9, data10];
 
-            generateCards(dataArray); //call thus to create the card 
+            generateCards(dataArray, 1); //call thus to create the card 
 
-            function scrollRight() {
-                var container = document.getElementById('scrollContainer');
+
+            //dummy data for NGO
+
+            var data1 = ["UNICEF", "USA", "https://www.unicef.org/", "+1-800-367-5437", "https://picsum.photos/id/100/200"];
+            var data2 = ["World Health Organization", "Switzerland", "https://www.who.int/", "+41 22 791 21 11", "https://picsum.photos/id/200/200"];
+            var data3 = ["Greenpeace", "Netherlands", "https://www.greenpeace.org/", "+31 20 718 2000", "https://picsum.photos/id/300/200"];
+            var data4 = ["Amnesty International", "United Kingdom", "https://www.amnesty.org/", "+44 20 7413 5500", "https://picsum.photos/id/400/200"];
+            var data5 = ["Doctors Without Borders (MSF)", "France", "https://www.doctorswithoutborders.org/", "+33 1 40 21 29 29", "https://picsum.photos/id/500/200"];
+            var data6 = ["The Nature Conservancy", "USA", "https://www.nature.org/", "+1 (800) 628-6860", "https://picsum.photos/id/600/200"];
+
+
+            // Combine all data arrays into a single array
+            var dataArray = [data1, data2, data3, data4, data5, data6, data7, data8, data9, data10];
+
+            generateCards(dataArray, 2);
+
+            function scrollRight(n) {
+                if (n == 1) {
+                    var container = document.getElementById('scrollContainer');
+                } else {
+                    var container = document.getElementById('scrollContainerforNgo');
+                }
                 container.scrollBy({
                     left: 100, // Adjust scroll amount as needed
                     behavior: 'smooth' // Add smooth scrolling effect
                 });
             }
 
-            function scrolltoleft() {
-                var container = document.getElementById('scrollContainer');
+            function scrolltoleft(n) {
+                if (n == 1) {
+                    var container = document.getElementById('scrollContainer');
+                } else {
+                    var container = document.getElementById('scrollContainerforNgo');
+                }
                 container.scrollBy({
                     left: -100, // Adjust scroll amount as needed
                     behavior: 'smooth' // Add smooth scrolling effect
